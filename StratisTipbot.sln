@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StratisTipbot", "StratisTipbot\StratisTipbot.csproj", "{C9968125-7680-4DE8-9964-3AF3BCBE088C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9968125-7680-4DE8-9964-3AF3BCBE088C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9968125-7680-4DE8-9964-3AF3BCBE088C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9968125-7680-4DE8-9964-3AF3BCBE088C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9968125-7680-4DE8-9964-3AF3BCBE088C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DEB6F997-4971-4B4F-8911-D3D33AB32C5A}
+	EndGlobalSection
+EndGlobal
