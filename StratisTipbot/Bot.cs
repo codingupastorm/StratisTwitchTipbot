@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using StratisTipbot.Commands;
 using TwitchLib.Client;
 using TwitchLib.Client.Enums;
 using TwitchLib.Client.Events;
@@ -12,7 +14,8 @@ namespace StratisTipbot
 {
     public class Bot
     {
-        TwitchClient client;
+        private readonly TwitchClient client;
+        private readonly CommandDispatcher commandDispatcher;
 
         public Bot()
         {
@@ -21,7 +24,8 @@ namespace StratisTipbot
             client.OnJoinedChannel += OnJoinedChannel;
             client.OnMessageReceived += OnMessageReceived;
             client.OnWhisperReceived += OnWhisperReceived;
-            client.OnNewSubscriber += OnNewSubscriber;
+
+            commandDispatcher = new CommandDispatcher(this.client); // TODO: DI.
         }
 
         public async Task Connect(string channelName)
@@ -43,22 +47,15 @@ namespace StratisTipbot
 
         private void OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
-            if (e.ChatMessage.Message.Contains("badword"))
-                client.TimeoutUser(e.ChatMessage.Channel, e.ChatMessage.Username, TimeSpan.FromMinutes(30), "Bad word! 30 minute timeout!");
+            if (e.ChatMessage.Message.StartsWith("!"))
+            {
+
+            }
         }
 
         private void OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
         {
-            if (e.WhisperMessage.Username == "my_friend")
-                client.SendWhisper(e.WhisperMessage.Username, "Hey! Whispers are so cool!!");
-        }
-
-        private void OnNewSubscriber(object sender, OnNewSubscriberArgs e)
-        {
-            if (e.Subscriber.SubscriptionPlan == SubscriptionPlan.Prime)
-                client.SendMessage(e.Channel, $"Welcome {e.Subscriber.DisplayName} to the substers! You just earned 500 points! So kind of you to use your Twitch Prime on this channel!");
-            else
-                client.SendMessage(e.Channel, $"Welcome {e.Subscriber.DisplayName} to the substers! You just earned 500 points!");
+            client.SendWhisper(e.WhisperMessage.Username, "Hey! The tipbot only works in public channels!");
         }
     }
 }
